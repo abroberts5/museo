@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/curator'
 require './lib/artist'
 require './lib/photograph'
+require 'csv'
 
 class CuratorTest < Minitest::Test
   def test_it_exists
@@ -294,5 +295,12 @@ class CuratorTest < Minitest::Test
 
     assert_equal [photo_2, photo_3, photo_4],curator.photographs_taken_by_artists_from("United States")
     assert_equal [], curator.photographs_taken_by_artists_from("Argentina")
+  end
+
+  def test_it_can_show_photos_taken_in_year_range
+    curator = Curator.new
+    curator.load_photographs('./data/photographs.csv')
+    curator.load_artists('./data/artists.csv')
+    assert_equal [1, 2], curator.photographs_taken_between(1950..1965)
   end
 end
