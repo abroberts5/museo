@@ -3,7 +3,7 @@ class Photograph
                   :name,
                   :artist_id,
                   :year
-                  
+
   def initialize(data_info)
     @id = data_info[:id]
     @name = data_info[:name]
